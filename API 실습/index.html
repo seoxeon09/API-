@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ㅎㅎ랜덤 고양이</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 40px;
+        background-color: rgb(252, 217, 222);
+      }
+      img {
+        max-width: 80%;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>고양이😽</h1>
+    <button id="btn">Change</button>
+    <div>
+      <img id="catImage" src="" alt="고양이 사진" />
+    </div>
+
+    <script>
+      const btn = document.getElementById('btn');
+      const img = document.getElementById('catImage');
+
+      function fetchCatImage() {
+        fetch('https://api.thecatapi.com/v1/images/search')
+          .then((res) => res.json())
+          .then((data) => {
+            img.src = data[0].url;
+          })
+          .catch(() => {
+            alert('고양이 사진을 불러오는 데 실패했습니다.');
+          });
+      }
+
+      btn.addEventListener('click', fetchCatImage);
+
+      fetchCatImage();
+    </script>
+  </body>
+</html>
